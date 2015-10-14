@@ -22,6 +22,18 @@
  * including non-strings.
 */
 
-Array.prototype.isSubsetOf = function(array){
-  // Your code here
+var a = ['commit','push'];
+var b = ['merge','reset','reset']
+
+Array.prototype.isSubsetOf = function(array) {
+  for (var i = 0; i < this.length; i++) {
+    if (array.indexOf(this[i]) === -1) {
+      return false;
+    }
+  };
+
+  return true;
 };
+
+console.log(a.isSubsetOf(['commit','rebase','push','blame']) );
+console.log(b.isSubsetOf(['commit','rebase','push','blame','reset','merge']) );
