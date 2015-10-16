@@ -11,6 +11,7 @@ var firstNonRepeatedCharacter = function(str) {
     if (str.indexOf(str[i]) === str.lastIndexOf(str[i]))
       return str[i];
   }
+  return null;
 };
 
 console.log(firstNonRepeatedCharacter('BBCDD'));
