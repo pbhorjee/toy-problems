@@ -36,7 +36,7 @@ var nthFibonacci = function (n) {
     thisFib += lastFib;
     lastFib = temp;
 
-    if (count = n) {
+    if (count === n) {
       return;
     } else {
       findNextNum();
