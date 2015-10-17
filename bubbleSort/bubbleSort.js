@@ -37,15 +37,16 @@ var i;
 
 
 var bubbleSort = function(array) {
-  var didBubble = true;
+  var didSort = true;
+  var stopIndex = array.length-1;
 
-  while (didBubble) {
-    didBubble = false;
+  while (didSort) {
+    didSort = false;
 
-    for (var i = 0; i < array.length-1; i++) {
+    for (var i = 0; i < stopIndex; i++) {
 
       if (array[i] > array[i+1]) {
-        didBubble = true;
+        didSort = true;
         var temp = array[i+1];
 
         array[i+1] = array[i];
@@ -53,9 +54,11 @@ var bubbleSort = function(array) {
       } 
 
     };
+        
+    stopIndex--;
   }
 
   return array;
 };
 
-console.log(bubbleSort([111,5,8,1,1001,12,3,13,212 ]));
+console.log(bubbleSort([111,5,8,1,2,-1001,12,3,13,212 ]));
