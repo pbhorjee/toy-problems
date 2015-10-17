@@ -50,4 +50,4 @@ var nthFibonacci = function (n) {
   return thisFib;
 };
 
-console.log(nthFibonacci(8));
+console.log(nthFibonacci(1000));
