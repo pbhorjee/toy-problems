@@ -61,4 +61,4 @@ var bubbleSort = function(array) {
   return array;
 };
 
-console.log(bubbleSort([111,5,8,1,2,-1001,12,3,13,212 ]));
+console.log(bubbleSort([212,111,5,8,1,1,2,-1001,12,3,13 ]));
