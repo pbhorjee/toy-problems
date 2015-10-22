@@ -42,13 +42,12 @@ Tree.prototype.DFSelect = function(filter) {
     if (filter(branch.value, depth)) {
       ret.push(branch.value);
     }
-    
+
     depth++;
 
     for (var i = 0; i < branch.children.length; i++) {
       recurse(branch.children[i], depth);
     };
-    
   }
 
   recurse(this, 0);
