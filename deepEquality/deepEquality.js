@@ -45,8 +45,8 @@ var deepEquals = function(apple, orange){
 };
 
 
-// console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}}))
-// console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}}))
+console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}}))
+console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}}))
 
 
 console.log(deepEquals({a: '1', b: '2'}, {b: '2', a: '1'})) // true
