@@ -56,7 +56,7 @@ console.log(binarySearch([1, 2, 3, 4, 5], 3));
 console.log(binarySearch([1, 2, 3, 4, 5], 4));
 console.log(binarySearch([1, 2, 3, 4, 5], 5));
 
-console.log(binarySearch([1, 2, 3, 4, 5, 17], 17));
+console.log(binarySearch([1, 2, 3, 4, 5, 17, 19, 200, 400], 17));
 console.log(binarySearch([1, 2, 3, 4], 1));
 console.log(binarySearch([1, 2], 2));
 console.log(binarySearch([], 2));
