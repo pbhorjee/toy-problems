@@ -14,7 +14,6 @@
 var deepEquals = function(apple, orange){
   var equal = true;
 
-
   var recurse = function(apple, orange){
     if (typeof orange !== 'object' || typeof apple !== 'object') {
       equal = false;

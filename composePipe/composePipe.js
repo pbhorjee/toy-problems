@@ -47,7 +47,7 @@ var add2 = function(number) {
 }
 
 var multiplyBy3 = function(number) { 
-  return number * 3; 
+  return number * 3;
 }
 
 //console.log(pipe);
