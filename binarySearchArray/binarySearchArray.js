@@ -9,11 +9,15 @@
  */
 
 var binarySearch = function (array, target) {
-  if (!Array.isArray(array) || array.length ===0) { return -1; }
+  if (!Array.isArray(array) || array.length === 0) {
+    return -1;
+  }
   var index = null;
 
   var splitSearch = function (array, target, startIndex) {
-    if (index) { return; }
+    if (index) {
+      return;
+    }
 
     var startIndex = startIndex || 0;
     var middle = Math.floor(array.length / 2);
@@ -35,7 +39,7 @@ var binarySearch = function (array, target) {
       if (rightArr.length === 1) {
         if (rightArr[0] === target) {
           index = startIndex + 1;
-        } else  {
+        } else {
           index = -1;
         }
         return;

@@ -24,8 +24,8 @@ var nthFibonacci = function (n) {
   var thisFib = 0;
   var lastFib = 0;
   var count = 1;
-  
-  var findNextNum = function() {
+
+  var findNextNum = function () {
     count++;
 
     if (thisFib === 0) {
@@ -41,7 +41,7 @@ var nthFibonacci = function (n) {
     } else {
       findNextNum();
     }
-  }
+  };
 
   if (n > 0) {
     findNextNum();

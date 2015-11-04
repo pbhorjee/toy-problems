@@ -15,25 +15,25 @@
  *
  * See http://en.wikipedia.org/wiki/Subset for more on the definition of a
  * subset.
-*/
+ */
 
 /*
  * Extra credit: Make the method work for arrays that contain any value,
  * including non-strings.
-*/
+ */
 
-var a = ['commit','push'];
-var b = ['merge','reset','reset']
+var a = ['commit', 'push'];
+var b = ['merge', 'reset', 'reset'];
 
-Array.prototype.isSubsetOf = function(array) {
+Array.prototype.isSubsetOf = function (array) {
   for (var i = 0; i < this.length; i++) {
     if (array.indexOf(this[i]) === -1) {
       return false;
     }
-  };
+  }
 
   return true;
 };
 
-console.log(a.isSubsetOf(['commit','rebase','push','blame', undefined]) );
-console.log(b.isSubsetOf(['commit','rebase','push','blame','reset','merge']) );
+console.log(a.isSubsetOf(['commit', 'rebase', 'push', 'blame', undefined]));
+console.log(b.isSubsetOf(['commit', 'rebase', 'push', 'blame', 'reset', 'merge']));

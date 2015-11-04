@@ -39,17 +39,99 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function (start, end, step) {
+  if (!this.checkSelf(start)) {
+    return null;
+  }
+
+  this.start = start;
+  this.end = end || start;
+  this.step = step || 1;
+
+  if (this.start > this.end) {
+    this.start = end;
+    this.end = start;
+
+    if (this.step > 0) {
+      this.step = -Math.abs(this.step);
+    }
+  }
+};
+
+Range.prototype.checkSelf = function (start) {
+  if (typeof start === "undefined") {
+    return false;
+  }
+  return true;
 };
 
 Range.prototype.size = function () {
+  if (!this.checkSelf(this.start)) {
+    return null;
+  }
+
+  return Math.floor((this.end - this.start) / Math.abs(this.step) + 1);
 };
 
 Range.prototype.each = function (callback) {
+  if (!this.checkSelf(this.start)) {
+    return null;
+  }
+
+  if (this.step < 0) {
+    for (var x = this.end; x >= this.start; x += this.step) {
+      callback(x);
+    }
+  } else {
+    for (var x = this.start; x <= this.end; x += this.step) {
+      callback(x);
+    }
+  }
 };
 
 Range.prototype.includes = function (val) {
+  if (!this.checkSelf(this.start)) {
+    return null;
+  }
+
+  var ret = false;
+
+  this.each(function (x) {
+    if (x === val) {
+      ret = true;
+    }
+  });
+
+  return ret;
 };
 
-var range = new Range(1);
 
+var exclaim = function (val) {
+  console.log(val + "!");
+};
+
+var range = new Range(2, 8, 3);
+console.log(range.size());
+range.each(exclaim);
+console.log(range.includes(2));
+
+console.log("-----------");
+
+var range = new Range(-2, 8, 3);
+console.log(range.size());
+range.each(exclaim);
+console.log(range.includes(-2));
+
+console.log("-----------");
+
+var range = new Range(-2, 8, -3);
+console.log(range.size());
+range.each(exclaim);
+console.log(range.includes(-1));
+
+console.log("-----------");
+
+var range = new Range(8, -2, -3);
+console.log(range.size());
+range.each(exclaim);
+console.log(range.includes(-1));

@@ -10,12 +10,13 @@
  * Extra credit: Extend your function to handle more than two input strings.
  */
 if (!String.prototype.includes) {
-  String.prototype.includes = function() {'use strict';
+  String.prototype.includes = function () {
+    'use strict';
     return String.prototype.indexOf.apply(this, arguments) !== -1;
   };
 }
 
-var commonCharacters = function(string1, string2) {
+var commonCharacters = function (string1, string2) {
   var common = {};
   var str1 = string1.length >= string2.length ? string1 : string2;
   var str2 = string1.length >= string2.length ? string2 : string1;
@@ -24,7 +25,7 @@ var commonCharacters = function(string1, string2) {
     if (str2.includes(str1[i])) {
       common[str1[i]] = str1[i];
     }
-  };
+  }
 
   return Object.keys(common).join(",");
 };

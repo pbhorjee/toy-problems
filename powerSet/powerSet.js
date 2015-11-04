@@ -17,30 +17,30 @@
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
-var powerSet = function(str) {
+var powerSet = function (str) {
   var arrStr = str.split('').sort();
   var ret = {"": ""};
 
-  var concater = function(startPos, stringTillNow) {
+  var concater = function (startPos, stringTillNow) {
     for (var i = startPos; i < arrStr.length; i++) {
       var tempStr = stringTillNow + arrStr[i];
       var sortedString = tempStr.split('').sort().join('');
-      var hasDuplicates = (/[^\w\s]|(.)\1/gi).test(sortedString)
+      var hasDuplicates = (/[^\w\s]|(.)\1/gi).test(sortedString);
 
       if (!hasDuplicates) {
         ret[sortedString] = sortedString;
       }
 
-      if (startPos < arrStr.length -1) {
+      if (startPos < arrStr.length - 1) {
         concater(startPos + 1, sortedString);
       }
     }
-  }
+  };
 
-  concater(0, "")
+  concater(0, "");
 
   return Object.keys(ret);
-}
+};
 
 
 console.log(powerSet("abc"));

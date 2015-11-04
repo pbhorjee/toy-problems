@@ -8,8 +8,8 @@
  */
 
 
-var largestProductOfThree = function(array) {
-  return array.sort().slice(array.length-3).reduce(function(a,b) {
+var largestProductOfThree = function (array) {
+  return array.sort().slice(array.length - 3).reduce(function (a, b) {
     return a * b;
   });
 };

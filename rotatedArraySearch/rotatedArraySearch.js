@@ -16,50 +16,32 @@
  */
 
 var rotatedArraySearch = function (rotated, target, low, high) {
-    if (low = 'undefined') {
-      low = 0;
+  low = low || 0;
+  if (typeof high === 'undefined') {
+    high = rotated.length - 1;
+  }
+
+  var mid = Math.floor((low + high) / 2);
+
+  if (rotated[mid] === target) {
+    return mid;
+  }
+
+  if (rotated[low] < rotated[mid]) {  //if left half is sorted
+    if (rotated[mid] <= target && rotated[high] >= target) {  //if target is present in the right half
+      return rotatedArraySearch(rotated, target, mid + 1, high);
+    } else { //if target is present in left half
+      return rotatedArraySearch(rotated, target, low, mid - 1);
     }
-    if (high = 'undefined') {
-      high = rotated.length-1;
+
+  } else { //else if right half is rotated
+    if (rotated[mid] <= target && rotated[high] >= target) {  //if target is present in the right half
+      return rotatedArraySearch(rotated, target, mid + 1, high);
+    } else { //if target is present in left half
+      return rotatedArraySearch(rotated, target, low, mid - 1);
     }
-
-console.log (low + high / 2);
-
-    //get mid
-    var mid = Math.floor(low + high / 2);
-
-    //target found
-    if (rotated[mid] === target) {
-      return mid;
-    }
-
-    //if left half is sorted
-    if (rotated[low] < rotated[mid]) {
-      //if target is present in the right half
-      if (rotated[mid] <= target && rotated[high] >= target) {
-        //search it
-        rotatedArraySearch(rotated, target, mid+1, high);
-
-      //if target is present in left half
-      } else { 
-        //search it
-        rotatedArraySearch(rotated, target, low, mid-1);
-      }
-
-    } else { //else if right half is rotated
-      //if target is present in the right half
-      if (rotated[mid] <= target && rotated[high] >= target) {
-        //search it
-        rotatedArraySearch(rotated, target, mid+1, high);
-        //search it
-
-      //if target is present in left half
-      } else { 
-        //search it
-        rotatedArraySearch(rotated, target, low, mid-1);
-      }
-    }
+  }
 };
 
-console.log(rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 2)) // -> 5
+console.log(rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 0));
 

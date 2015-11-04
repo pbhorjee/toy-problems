@@ -34,7 +34,6 @@
 'use strict';
 
 var compose = function () {
-
   var args = Array.prototype.slice.call(arguments);
 
   return function (val) {
@@ -43,6 +42,17 @@ var compose = function () {
     }, val);
   };
 };
+
+var greet = function (name) {
+  return 'hi: ' + name;
+};
+
+var exclaim = function (statement) {
+  return statement.toUpperCase() + '!';
+};
+var welcome = compose(greet, exclaim);
+
+console.log(welcome('phillip')); // 'hi: PHILLIP!'
 
 var pipe = function () {
   var args = Array.prototype.slice.call(arguments);
