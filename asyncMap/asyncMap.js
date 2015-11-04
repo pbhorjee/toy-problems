@@ -39,5 +39,48 @@
  */
 
 
-var asyncMap = function(tasks, callback){
+//TODO:  Not working
+
+var asyncMap = function (tasks, callback) {
+  var results = [];
+
+  for (var i = 0; i < tasks.length; i++) {
+    results.push(tasks[i](callback));
+  }
+
+  var intvl = setInterval(function() {
+    var allDone = true;
+
+    for (var i = 0; i < results.length; i++) {
+      if (results[i] === undefined) {
+        allDone = false;
+      }
+    }
+
+    if (allDone) {
+      clearInterval(intvl);
+      return callback(results);
+    }
+  }, 5);
 };
+
+
+var am = asyncMap([
+    function (cb) {
+      setTimeout(function () {
+        cb('one');
+      }, 200);
+    },
+    function (cb) {
+      setTimeout(function () {
+        cb('two');
+      }, 100);
+    }
+  ],
+  function (results) {
+    // the results array will equal ['one','two'] even though
+    // the second function had a shorter timeout.
+    console.log(results); // ['one', 'two']
+  });
+
+console.log(am);
