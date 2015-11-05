@@ -45,23 +45,25 @@ var asyncMap = function (tasks, callback) {
   var results = [];
 
   for (var i = 0; i < tasks.length; i++) {
-    results.push(tasks[i](callback));
+    results.push(function(callback) { tasks[i](callback); } );
   }
 
-  var intvl = setInterval(function() {
-    var allDone = true;
+  //var intvl = setInterval(function() {
+  //  var allDone = true;
+  //
+  //  for (var i = 0; i < results.length; i++) {
+  //    if (results[i] === undefined) {
+  //      allDone = false;
+  //    }
+  //  }
+  //
+  //  if (allDone) {
+  //    clearInterval(intvl);
+  //    return callback(results);
+  //  }
+  //}, 5);
 
-    for (var i = 0; i < results.length; i++) {
-      if (results[i] === undefined) {
-        allDone = false;
-      }
-    }
-
-    if (allDone) {
-      clearInterval(intvl);
-      return callback(results);
-    }
-  }, 5);
+  return results.forEach(callback);
 };
 
 

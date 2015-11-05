@@ -23,7 +23,56 @@
  *
  *
  */
-var balancedParens = function(input){
+var balancedParens = function (input) {
+  var windUp = [];
+
+  for (var i = 0, len = input.length; i < len; i++) {
+    switch (input[i]) {
+      case '(':
+        windUp.push(input[i]);
+        break;
+      case ')':
+        if (!checkLastWindUp('(', windUp)) {
+          return false;
+        }
+        break;
+
+      case '[':
+        windUp.push(input[i]);
+        break;
+      case ']':
+        if (!checkLastWindUp('[', windUp)) {
+          return false;
+        }
+        break;
+
+      case '{':
+        windUp.push(input[i]);
+        break;
+      case '}':
+        if (!checkLastWindUp('{', windUp)) {
+          return false;
+        }
+        break;
+    }
+  }
+
+  return windUp.length === 0;
 };
 
+function checkLastWindUp(charToUnwind, windUp) {
+  if (windUp[windUp.length - 1] !== charToUnwind) {
+    return false;
+  } else {
+    windUp.pop();
+    return true;
+  }
+}
 
+console.log(balancedParens(' ([])]')); // false
+console.log(balancedParens(' (())')); // true
+console.log(balancedParens(' var wow  = { yo: thisIsAwesome() }')); // true
+console.log(balancedParens(' var hubble = function() { telescopes.awesome();')); // false
+console.log(balancedParens(' var hubble = function() { telescopes.awesome() };')); // true
+console.log(balancedParens(' var hubble = function() {[] telescopes.awesome() };')); // true
+console.log(balancedParens(' var hubble = function() {[{] telescopes.awesome() };')); // false
