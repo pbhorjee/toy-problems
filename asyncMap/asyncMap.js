@@ -39,35 +39,25 @@
  */
 
 
-//TODO:  Not working
-
 var asyncMap = function (tasks, callback) {
-  var results = [];
+  var resultsArray = [];
+  var resultsCount = 0;
 
   for (var i = 0; i < tasks.length; i++) {
-    results.push(function(callback) { tasks[i](callback); } );
+    (function (i) {
+      tasks[i](function (val) {
+        resultsArray[i] = val;
+        resultsCount++;
+        if (resultsCount === tasks.length) {
+          callback(resultsArray);
+        }
+      });
+    })(i);
   }
-
-  //var intvl = setInterval(function() {
-  //  var allDone = true;
-  //
-  //  for (var i = 0; i < results.length; i++) {
-  //    if (results[i] === undefined) {
-  //      allDone = false;
-  //    }
-  //  }
-  //
-  //  if (allDone) {
-  //    clearInterval(intvl);
-  //    return callback(results);
-  //  }
-  //}, 5);
-
-  return results.forEach(callback);
 };
 
 
-var am = asyncMap([
+asyncMap([
     function (cb) {
       setTimeout(function () {
         cb('one');
@@ -84,5 +74,3 @@ var am = asyncMap([
     // the second function had a shorter timeout.
     console.log(results); // ['one', 'two']
   });
-
-console.log(am);
