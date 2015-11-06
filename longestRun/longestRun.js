@@ -13,7 +13,27 @@
  */
 
 var longestRun = function (string) {
-  // TODO: Your code here!
+  var lastLongestRun = [0,0];
+  var thisRun = [0,0];
+
+  function compareLengths() {
+    if ((thisRun[1] - thisRun[0]) > (lastLongestRun[1] - lastLongestRun[0])) {
+      lastLongestRun = thisRun.slice(0);
+    }
+  }
+
+  for (var i = 1; i < string.length; i++) {
+    if (string[i] === string[i - 1]) {
+      thisRun[1] = i;
+    } else {
+      compareLengths();
+      thisRun[0] = thisRun[1] = i;
+    }
+  }
+
+  compareLengths();
+
+  return lastLongestRun;
 };
 
 // If you need a random string generator, use this!
@@ -28,3 +48,20 @@ var randomString = function (len) {
 
   return text;
 };
+
+var l = console.log;
+
+l(longestRun("abbbcc")); // [1, 3]
+l(longestRun("aabbc"));  // [0, 1]
+l(longestRun("abcd"));  // [0, 0]
+l(longestRun("abbbccc")); // [1, 3]
+l(longestRun("abbbccccc")); // [4, 8]
+l('');
+
+var string = randomString(200);
+l(string);
+l(longestRun(string));
+
+string = randomString(200) + "xxxx";
+l(string);
+l(longestRun(string));
