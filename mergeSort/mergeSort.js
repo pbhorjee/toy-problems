@@ -98,5 +98,50 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  var container = [];
+
+  for (var i = 0; i < array.length; i++) {
+    container.push([array[i]]);
+  }
+
+  var merge = function() {
+    var tempContainer = [];
+
+    for (var i = 0; i < container.length; i++) {
+      var tempContainer2 = [];
+
+      if (container[i + 1] !== undefined) {
+        for (var j = 0; j < container[i + 1].length; j++) {
+          if (container[i][j] <= container[i + 1][j]) {
+            tempContainer2.push(container[i][j]);
+            tempContainer2.push(container[i + 1][j]);
+          } else {
+            tempContainer2.push(container[i + 1][j]);
+            tempContainer2.push(container[i][j]);
+          }
+        }
+
+        tempContainer.push(tempContainer2);
+        i++;
+      } else {
+        tempContainer.push(container[i]);
+      }
+    }
+
+    container = tempContainer.slice(0);
+
+    if (container.length > 1) {
+      merge();
+    } else {
+      return;
+    }
+  };
+
+  merge();
+
+  return container;
 };
+
+var initArray = [4,7,4,3,9,1,2];
+console.log(initArray)
+console.log(mergeSort(initArray));
