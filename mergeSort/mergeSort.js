@@ -96,6 +96,8 @@
  */
 
 
+//TODO: not complete
+
 
 var mergeSort = function(array) {
   var container = [];
@@ -111,17 +113,20 @@ var mergeSort = function(array) {
       var tempContainer2 = [];
 
       if (container[i + 1] !== undefined) {
-        for (var j = 0; j < container[i + 1].length; j++) {
-          if (container[i][j] <= container[i + 1][j]) {
-            tempContainer2.push(container[i][j]);
-            tempContainer2.push(container[i + 1][j]);
-          } else {
-            tempContainer2.push(container[i + 1][j]);
-            tempContainer2.push(container[i][j]);
+        for (var j = 0; j < container[i].length; j++) {
+          var il = 0, ir = 0;
+          var left = container[i], right = container[i + 1];
+
+          while (il < left.length && ir < right.length) {
+            if (left[il] < right[ir]){
+              tempContainer2.push(left[il++]);
+            } else {
+              tempContainer2.push(right[ir++]);
+            }
           }
         }
 
-        tempContainer.push(tempContainer2);
+        container.push(tempContainer2.concat(left.slice(il)).concat(right.slice(ir)));
         i++;
       } else {
         tempContainer.push(container[i]);
