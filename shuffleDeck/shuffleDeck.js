@@ -62,7 +62,48 @@ var orderedDeck = function() {
   return deck;
 };
 
-var od = orderedDeck();
-console.log(od.length);
-console.log(od.join(","));
-console.log(shuffleDeck(od).join(","));
+
+//var od = orderedDeck();
+//console.log(od.length);
+//console.log(od.join(","));
+//console.log(shuffleDeck(od).join(","));
+
+//how random?
+var deck = orderedDeck();
+
+var cardPositionCounts = {};
+for (var i = 0; i < deck.length; i++) {
+  var cardPosition = cardPositionCounts[deck[i]] = {};
+  for (var j = 0; j < deck.length; j++) {
+    cardPosition[j] = 0;
+  }
+}
+// ...over the course of five hundred shuffles
+var iterations = 52 * 10;
+for (var i = 0; i < iterations; i++) {
+  deck = orderedDeck();
+  var randomDeck = shuffleDeck(deck);
+  for (var j = 0; j < randomDeck.length; j++) {
+    cardPositionCounts[randomDeck[j]][j] += 1;
+  }
+}
+// The result should not betray any obvious statistical bias.
+deck = orderedDeck();
+// The expected number of occurrences for a particular card in a particular index is
+// iterations/52 = 10
+var expected = 10,
+  chi2 = 0;
+for (var i = 0; i < deck.length; i++) {
+  var cardPosition = cardPositionCounts[deck[i]];
+  for (var j = 0; j < deck.length; j++) {
+    // calculate chi-squared test
+    chi2 += Math.pow(cardPosition[j] - expected, 2) / expected;
+  }
+}
+var result = [];
+for (var k=0; k<10000000; k++){
+  result.push(chi2);
+}
+var sum = result.reduce(function(sum, value){return sum + value;}, 0);
+var avg = sum/result.length;
+console.log(avg);
