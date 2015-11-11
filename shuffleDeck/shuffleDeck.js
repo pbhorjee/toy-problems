@@ -32,8 +32,19 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  for (var i = 0; i < deck.length; i++) {
+    var ri = getRandomInt(0, 51);
+    var temp = deck[ri];
+    deck[ri] = deck[i];
+    deck[i] = temp;
+  }
+
+  return deck;
 };
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
@@ -50,3 +61,8 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var od = orderedDeck();
+console.log(od.length);
+console.log(od.join(","));
+console.log(shuffleDeck(od).join(","));
