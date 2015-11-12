@@ -33,7 +33,7 @@
 
 var shuffleDeck = function(deck) {
   for (var i = 0; i < deck.length; i++) {
-    var ri = getRandomInt(0, 51);
+    var ri = Math.floor(Math.random()*(deck.length-i))+i;
     var temp = deck[ri];
     deck[ri] = deck[i];
     deck[i] = temp;
@@ -41,10 +41,6 @@ var shuffleDeck = function(deck) {
 
   return deck;
 };
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
