@@ -30,6 +30,8 @@
  *
  */
 
+//TODO: fixe for checking for middle match, not final split to 1 node
+
 // Introduce i into the global scope so we can test func
 var bubbleSort = function (array) {
   var didSort = true;

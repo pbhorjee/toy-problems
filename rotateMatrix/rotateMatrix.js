@@ -43,6 +43,8 @@
  *  - Make your function accept a parameter for the direction of rotation (1 = clockwise, -1 = counterclockwise)
  */
 
+//TODO: fix for not intiting empty ret array
+
 var rotateMatrix = function (matrix) {
   var length = matrix[0].length;
   var ret = (function (a) {
