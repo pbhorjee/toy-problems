@@ -33,4 +33,32 @@ var rockPaperScissors = function () {
   }
 };
 
-rockPaperScissors();
+//rockPaperScissors();
+
+
+function rockPaperPermutation (roundCount) {
+  var playSequences = [];
+  var throws = ['r', 'p', 's'];
+
+  var recurse = function (playSequence, roundNum) {
+    if (roundCount === roundNum) {
+      if (playSequence !== '') {
+        playSequences.push(playSequence);
+      }
+      return;
+    }
+
+    roundNum++;
+
+    for (var i = 0; i < throws.length; i++) {
+      recurse(playSequence + throws[i], roundNum);
+    }
+  };
+
+  recurse('', 0);
+
+  return playSequences;
+}
+
+console.log(rockPaperPermutation(4));
+
