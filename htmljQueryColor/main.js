@@ -5,7 +5,6 @@ $(function () {
   // becomes: <p><span>Hey</span><span>there</span></p>
   // HINT: the `split` array method is your friend
 
-  // TODO: your code here!
 
   var $Ps = $('p');
 
@@ -22,8 +21,6 @@ $(function () {
 
   // --------------STEP 2--------------
   // Next, change spans to random colors, once per second
-
-  // TODO: your code here!
 
   var colorChange = function () {
     var $colorChanges = $('.color-change');

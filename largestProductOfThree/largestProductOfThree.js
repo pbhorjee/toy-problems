@@ -9,9 +9,24 @@
 
 
 var largestProductOfThree = function (array) {
-  return array.sort().slice(array.length - 3).reduce(function (a, b) {
-    return a * b;
-  });
+  function sortNumber(a, b) {
+    return a - b;
+  }
+
+  array.sort(sortNumber);
+
+  var possibility1 = array[0] * array[1] * array[array.length - 1];
+  var possibility2 = array[array.length - 3] * array[array.length - 2] * array[array.length - 1];
+
+  if (possibility1 > possibility2) {
+    return possibility1;
+  } else {
+    return possibility2;
+  }
 };
 
 console.log(largestProductOfThree([9, 2, 1, 3, 7, 8, 9, -3]));
+console.log(largestProductOfThree([ 2, 1, 3, 7 ]));
+console.log(largestProductOfThree([ 2, 11, 13, 7, 13, 3, 11, 5 ]));
+console.log(largestProductOfThree([ -31, 41, 34, -37, -17, 29 ]));
+console.log(largestProductOfThree([ -1, -2, -3, -4, -5 ]));
