@@ -1,14 +1,9 @@
 /**
- * Write a function `f(a, b)` which takes two strings as arguments and returns a
- * string containing the characters found in both strings (without duplication), in the
- * order that they appeared in `a`. Remember to skip spaces and characters you
- * have already encountered!
- *
- * Example: commonCharacters('acexivou', 'aegihobu')
- * Returns: 'aeiou'
- *
- * Extra credit: Extend your function to handle more than two input strings.
+ Write a function that accepts two strings as arguments, and returns only the characters that are common to both strings.
+
+ Your function should return the common characters in the same order that they appear in the first argument. Do not return duplicate characters and ignore whitespace in your returned string.
  */
+
 if (!String.prototype.includes) {
   String.prototype.includes = function () {
     'use strict';
@@ -16,19 +11,21 @@ if (!String.prototype.includes) {
   };
 }
 
-var commonCharacters = function (string1, string2) {
-  var common = {};
-  var str1 = string1.length >= string2.length ? string1 : string2;
-  var str2 = string1.length >= string2.length ? string2 : string1;
+function isWhitespaceOrEmpty(text) {
+  return !/[^\s]/.test(text);
+}
 
-  for (var i = 0; i < str1.length; i++) {
-    if (str2.includes(str1[i])) {
-      common[str1[i]] = str1[i];
+var commonCharacters = function (string1, string2) {
+  var common = '';
+
+  for (var i = 0; i < string1.length; i++) {
+    if (!isWhitespaceOrEmpty(string1[i]) && string2.includes(string1[i]) && !common.includes(string1[i])) {
+      common += string1[i];
     }
   }
 
-  return Object.keys(common).join(",");
+  return common;
 };
 
 
-console.log(commonCharacters('acexivou', 'aegi'));
+console.log(commonCharacters('acexivou', 'aegihobu'));
