@@ -45,7 +45,7 @@ var Range = function (start, end, step) {
   }
 
   this.start = start;
-  this.end = end || start;
+  this.end = end === undefined ? start : end;
   this.step = step || 1;
 
   if (this.start > this.end) {
@@ -59,10 +59,7 @@ var Range = function (start, end, step) {
 };
 
 Range.prototype.checkSelf = function (start) {
-  if (typeof start === "undefined") {
-    return false;
-  }
-  return true;
+  return typeof start !== "undefined";
 };
 
 Range.prototype.size = function () {
@@ -109,29 +106,40 @@ Range.prototype.includes = function (val) {
 var exclaim = function (val) {
   console.log(val + "!");
 };
+//
+//var range = new Range(2, 8, 3);
+//console.log(range.size());
+//range.each(exclaim);
+//console.log(range.includes(2));
+//
+//console.log("-----------");
+//
+//var range = new Range(-2, 8, 3);
+//console.log(range.size());
+//range.each(exclaim);
+//console.log(range.includes(-2));
+//
+//console.log("-----------");
+//
+//var range = new Range(-2, 8, -3);
+//console.log(range.size());
+//range.each(exclaim);
+//console.log(range.includes(-1));
+//
+//console.log("-----------");
+//
+//var range = new Range(8, -2, -3);
+//console.log(range.size());
+//range.each(exclaim);
+//console.log(range.includes(-1));
+//
+//
+//var countdown = new Range(10, 0, -1);
+//var elements = [];
+//countdown.each(function (val) {
+//  elements.push(val);
+//});
 
-var range = new Range(2, 8, 3);
-console.log(range.size());
-range.each(exclaim);
-console.log(range.includes(2));
+var justOne = new Range(1);
 
-console.log("-----------");
-
-var range = new Range(-2, 8, 3);
-console.log(range.size());
-range.each(exclaim);
-console.log(range.includes(-2));
-
-console.log("-----------");
-
-var range = new Range(-2, 8, -3);
-console.log(range.size());
-range.each(exclaim);
-console.log(range.includes(-1));
-
-console.log("-----------");
-
-var range = new Range(8, -2, -3);
-console.log(range.size());
-range.each(exclaim);
-console.log(range.includes(-1));
+console.log(justOne.size());
