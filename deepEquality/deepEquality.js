@@ -23,17 +23,23 @@ var deepEquals = function (apple, orange) {
     var appleKeys = Object.keys(apple);
     var orangeKeys = Object.keys(orange);
 
-    for (var i = 0; i < appleKeys.length; i++) {
-      if (orangeKeys.indexOf(appleKeys[i]) === -1) {
-        equal = false;
-        break
-      }
+    if (appleKeys.length !== orangeKeys.length) {
+      equal = false;
+    }
 
-      if (typeof orange[appleKeys[i]] === 'object' || typeof apple[appleKeys[i]] === 'object') {
-        recurse(apple[appleKeys[i]], orange[appleKeys[i]]);
-      } else if (orange[appleKeys[i]] !== apple[appleKeys[i]]) {
-        equal = false;
-        break
+    if (equal) {
+      for (var i = 0; i < appleKeys.length; i++) {
+        if (orangeKeys.indexOf(appleKeys[i]) === -1) {
+          equal = false;
+          break
+        }
+
+        if (typeof orange[appleKeys[i]] === 'object' || typeof apple[appleKeys[i]] === 'object') {
+          recurse(apple[appleKeys[i]], orange[appleKeys[i]]);
+        } else if (orange[appleKeys[i]] !== apple[appleKeys[i]]) {
+          equal = false;
+          break
+        }
       }
     }
   };
@@ -44,12 +50,16 @@ var deepEquals = function (apple, orange) {
 };
 
 
-console.log(deepEquals({a: 1, b: {c: 3}}, {a: 1, b: {c: 3}}));
-console.log(deepEquals({a: 1, b: {c: 5}}, {a: 1, b: {c: 6}}));
+//console.log(deepEquals({a: 1, b: {c: 3}}, {a: 1, b: {c: 3}}));
+//console.log(deepEquals({a: 1, b: {c: 5}}, {a: 1, b: {c: 6}}));
+//
+//
+//console.log(deepEquals({a: '1', b: '2'}, {b: '2', a: '1'})); // true
+//console.log(deepEquals({a: '1', b: {aa: 4}}, {b: {aa: 4}, a: '1'})); //true
+//console.log(deepEquals({a: '1', b: {aa: 4}}, {b: {aa: 3}, a: '1'})); // false
+//console.log(deepEquals({a: '1', b: {aa: {bb: 3}}}, {b: {aa: {bb: 3}}, a: '1'})); // true
+//console.log(deepEquals({a: '1', b: {aa: 'f'}}, {b: {aa: {bb: 3}}, a: '1'})); // false
 
-
-console.log(deepEquals({a: '1', b: '2'}, {b: '2', a: '1'})); // true
-console.log(deepEquals({a: '1', b: {aa: 4}}, {b: {aa: 4}, a: '1'})); //true
-console.log(deepEquals({a: '1', b: {aa: 4}}, {b: {aa: 3}, a: '1'})); // false
-console.log(deepEquals({a: '1', b: {aa: {bb: 3}}}, {b: {aa: {bb: 3}}, a: '1'})); // true
-console.log(deepEquals({a: '1', b: {aa: 'f'}}, {b: {aa: {bb: 3}}, a: '1'})); // false
+var a = { foo: 'bar' };
+var b = { foo: 'bar', biz: 'baz' };
+console.log(deepEquals(a, b));
