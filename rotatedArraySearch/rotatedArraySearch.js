@@ -43,5 +43,5 @@ var rotatedArraySearch = function (rotated, target, low, high) {
   }
 };
 
-console.log(rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 0));
+console.log(rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 100));
 

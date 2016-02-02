@@ -30,7 +30,7 @@ var translateRomanNumeral = function (romanNumeral) {
 
   for (var i = 0; i < romanNumeral.length; i++) {
     if (!DIGIT_VALUES[romanNumeral[i]]) {
-      return null;
+      return "null";
     } else {
       var thisVal = DIGIT_VALUES[romanNumeral[i]];
     }
@@ -45,13 +45,13 @@ var translateRomanNumeral = function (romanNumeral) {
   return ret;
 };
 
-console.log(translateRomanNumeral("LP")); //null
-console.log(translateRomanNumeral("LX")); //60
-console.log(translateRomanNumeral("IV")); //4
-console.log(translateRomanNumeral("XCVIII")); //98
-console.log(translateRomanNumeral("XCIX")); //99
-console.log(translateRomanNumeral("DCCCXC")); //890
-console.log(translateRomanNumeral("LXXXVIII")); //88
-console.log(translateRomanNumeral("LXXXIX")); //89
-console.log(translateRomanNumeral("DI")); //501
-console.log(translateRomanNumeral("DCCVII")); //707
+console.log(translateRomanNumeral("horse")); //null
+//console.log(translateRomanNumeral("LX")); //60
+//console.log(translateRomanNumeral("IV")); //4
+//console.log(translateRomanNumeral("XCVIII")); //98
+//console.log(translateRomanNumeral("XCIX")); //99
+//console.log(translateRomanNumeral("DCCCXC")); //890
+//console.log(translateRomanNumeral("LXXXVIII")); //88
+//console.log(translateRomanNumeral("LXXXIX")); //89
+//console.log(translateRomanNumeral("DI")); //501
+//console.log(translateRomanNumeral("DCCVII")); //707
