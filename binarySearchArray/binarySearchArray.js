@@ -47,7 +47,7 @@ var binarySearch = function (array, target) {
 
       splitSearch(rightArr, target, startIndex + middle)
     }
-  }
+  };
 
   splitSearch(array, target);
 
